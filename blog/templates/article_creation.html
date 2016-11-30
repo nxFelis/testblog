@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block content %}
+
+<h2> {{ title }}</h2>
+<div class="row">
+    <div class="span8">
+        {% if obj %}
+            <form action="{% url action obj.pk %}" enctype="multipart/form-data" method="post">
+        {% else %}
+            <form action="{% url action %}" enctype="multipart/form-data" method="post">
+        {% endif %}
+                {% csrf_token %}
+                {{ form.as_ul}}
+                <input class="btn btn-success" type="submit" value="Submit" />
+            </form>
+    </div>
+</div>
+{% endblock %}

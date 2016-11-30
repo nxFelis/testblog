@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block content %}
+    <h2>{{ title }}</h2>
+    {% for obj in objects %}
+        <ul>
+        <li><a href="{% url 'article-get' obj.article.slug %}">{{ obj.article.title }}</a></li>
+        <p>{{ obj.article.description }}</p>
+        </ul>
+    {% endfor %}
+    {% if not objects %}
+        <p>{% trans 'It seems like you have not subscribed yet.' %}</p>
+        <p><a href="{% url 'blog-subscribe' %}">{% trans 'Try to subscribe?' %}</a></p>
+    {% endif %}
+{% endblock %}

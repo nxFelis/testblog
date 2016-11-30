@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block content %}
+    <h2>{{ title }}</h2>
+    {% if success %}
+    <h3>{{ success }}</h3>
+    <p><a href="{% url 'blog-subscribe' %}">{% trans 'Replay?' %}</a></p>
+    {% endif %}
+    <form method="post" action="{% url 'blog-subscribe' %}">
+    {% csrf_token %}
+    {{ formset.management_form }}
+    <div class="row span6">
+        {% for form in formset %}
+            {{ form }}
+            <hr>
+        {% endfor %}
+    </div>
+    {% if not success %}
+    <div class="row span6"><input type="submit" value="Submit" /></div>
+    {% endif %}
+    </form>
+{% endblock %}

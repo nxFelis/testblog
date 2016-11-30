@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block content %}
+
+<h2>{{ title }}</h2>
+    <h2>{{ obj.title }}</h2>
+    <p>{{ obj.author_name }}</p>
+    <p>{{ obj.content }}</p>
+    <a href="{% url 'article-edit' obj.pk %}">{% trans 'Edit' %}</a>
+{% endblock %}

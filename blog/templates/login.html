@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block content %}
+    {{ title }}
+    {% if user.is_authenticated %}
+        <br />
+        <p> {% trans 'Already login as' %} {{ user }}.
+    {% else %}
+        <h3>{% trans 'Sign in' %}</h3>
+        <form method="post" action="{% url 'index' %}"> {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" class="btn btn-info" value="Login" />
+        <input type="hidden" name="next" value="{% url 'index' %}" />
+        </form>
+    {% endif %}
+{% endblock %}
